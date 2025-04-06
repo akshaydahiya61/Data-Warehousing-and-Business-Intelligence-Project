@@ -1,0 +1,273 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="78f4ef80-643f-4f84-8868-b87177816798" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Europe</ID>
+  <Name>Europe</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="5a7a44a9-90ba-4d44-b8ac-f1db8bf3be02">
+      <ID>Economy DIM</ID>
+      <Name>Economy DIM</Name>
+      <DimensionID>Economy DIM</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="d6faac86-da2f-4fc5-9c30-7919c924ba45">
+          <AttributeID>Economy ID</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="1cb88b4b-1e56-4cec-86d7-1ae16ae426df">
+      <ID>Debt DIM</ID>
+      <Name>Debt DIM</Name>
+      <DimensionID>Debt DIM</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="03ddbd82-d351-47fb-b3c9-0d6e2c9193c3">
+          <AttributeID>Country Code</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6f0ae364-66be-495a-8761-92a24815a93a">
+          <AttributeID>Country</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="97b862e5-1773-4a98-ac07-0e158d7404f8">
+      <ID>Population DIM</ID>
+      <Name>Population DIM</Name>
+      <DimensionID>Population DIM</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="a54068b9-8ac1-4977-882d-d8179350b9c7">
+          <AttributeID>Population ID</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="25c41f9a-2a59-4de6-ba78-9a1b91070d1a">
+          <AttributeID>Country Code</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="f0dcd885-059c-4d72-9ed8-af17d0dc00e5">
+      <ID>Company DIM</ID>
+      <Name>Company DIM</Name>
+      <DimensionID>Company DIM</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="ccdfb3ab-5f2f-4791-bddd-c4a11e01b6f2">
+          <AttributeID>Company Id</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="bf9be728-68af-49af-8aab-f1adce7dbc38">
+          <AttributeID>Company</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31d3bb77-5b4b-4ddf-9593-9ee5a36da453">
+          <AttributeID>Sector</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="c7d65849-5c71-44ad-8932-009e1eaf6237">
+      <ID>Fact Table</ID>
+      <Name>Fact Table</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="e69c6ed3-39ca-4dba-bd0d-b95c8de9a2a3">
+          <ID>Total Employess</ID>
+          <Name>Total Employess</Name>
+          <Source dwd:design-time-name="7e9196ca-4ab9-46c9-afb3-de2a9d448099">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="c6a1b263-084c-4cf1-a908-48701c76d99e">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>Total_Employess</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="ed63c828-ce00-4717-ba4b-c4f7e88ef0ea">
+          <ID>Population</ID>
+          <Name>Population</Name>
+          <Source dwd:design-time-name="2bef1865-cef4-4f3b-92f3-e41cbac7d90b">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="ec86cda9-0997-4c0c-a796-836f761a15eb">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>Population</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="3172cf1f-ef5a-43c0-9bf4-2661f4620c30">
+          <ID>Last Quarter GDP</ID>
+          <Name>Last Quarter GDP</Name>
+          <Source dwd:design-time-name="5491a964-3285-4dab-bf8d-caae56b67326">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="369af901-458c-4c08-8d5b-012554b98627">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>Last_Quarter_GDP</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="ef03e6fa-ac46-4b4e-87ac-32c963eaf54a">
+          <ID>Percentoftotal E Uarea</ID>
+          <Name>Percentoftotal E Uarea</Name>
+          <Source dwd:design-time-name="9d7f42b8-9319-4405-b8a3-e022bd217d49">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="79746967-a8d1-4a44-b9c6-5f188afe2989">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>PercentoftotalEUarea</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="cae71bc4-a6e0-40ea-ae4a-c04cb871c397">
+          <ID>Nationaldebtinrelationto GDP</ID>
+          <Name>Nationaldebtinrelationto GDP</Name>
+          <Source dwd:design-time-name="da94d744-6909-47c9-a361-c6e3325b6d45">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e1cfa110-524a-454c-9a12-a8e11659562e">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>NationaldebtinrelationtoGDP</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="cdecd060-7012-4517-aec9-97aca6edc1c5">
+          <ID>Revenue2019</ID>
+          <Name>Revenue2019</Name>
+          <Source dwd:design-time-name="c1d131a2-10e5-4f69-986e-1bddf8ad6ea9">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e343b4f2-8d16-44c0-aaf5-35adf4c0f165">
+              <TableID>dbo_Fact_Table</TableID>
+              <ColumnID>Revenue2019</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="0bece558-bfd6-4949-b0d2-3f6d9beca7fe">
+          <ID>Fact Table Count</ID>
+          <Name>Fact Table Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="7eaeaa14-4724-46a6-9f35-b8ff6290f324">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="550b08e7-8542-4999-a1de-add89943b566">
+              <TableID>dbo_Fact_Table</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d5a5d13a-ee3c-4723-a116-e0e79d936c3d">
+          <CubeDimensionID>Company DIM</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="6235bc4a-9861-4f85-8b11-6fea90851439">
+              <AttributeID>Company Id</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="909f41fb-518c-4369-bb4b-be7d56f9c58d">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="7d3b8ec2-f830-408c-b805-c99512e14226">
+                    <TableID>dbo_Fact_Table</TableID>
+                    <ColumnID>Company_ID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="57e514ee-af27-4ef8-a7ca-50393b05425e">
+          <CubeDimensionID>Economy DIM</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="c83752d7-03d2-425d-b9ba-e754fc16a32b">
+              <AttributeID>Economy ID</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="95d47f5f-257d-4592-a197-82314a6cc6cd">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="a12a3111-c15f-4a92-999d-02451095f99b">
+                    <TableID>dbo_Fact_Table</TableID>
+                    <ColumnID>Economy_ID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d55d0a43-b81c-4690-9263-6382cf23dac4">
+          <CubeDimensionID>Debt DIM</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="4daada36-7722-4dd0-8d00-b9dfea72a799">
+              <AttributeID>Country Code</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="401b4357-2647-4f50-901d-990b3480a9c9">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="d2bf6f51-6920-48e9-9021-a9fed1ee41df">
+                    <TableID>dbo_Fact_Table</TableID>
+                    <ColumnID>Country_Code</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="2fc88ad9-95f0-489e-8259-bec6246ea9e0">
+          <CubeDimensionID>Population DIM</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="0cb999f3-dbf2-42fe-b9fd-da921d03e506">
+              <AttributeID>Population ID</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="107e1eec-ef5b-4a41-8165-e4e7199768d7">
+                  <DataType>Integer</DataType>
+                  <NullProcessing>UnknownMember</NullProcessing>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="fd7a096b-e4ca-4fa3-b3dd-38eaf5628f4d">
+                    <TableID>dbo_Fact_Table</TableID>
+                    <ColumnID>Population_ID</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="3fb40602-31e7-4edb-bb00-ad908b438b03">
+    <DataSourceViewID>Europe</DataSourceViewID>
+  </Source>
+</Cube>

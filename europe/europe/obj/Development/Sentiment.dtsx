@@ -1,0 +1,411 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/22/2019 6:43:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ABHI"
+  DTS:CreatorName="ABHI\berad"
+  DTS:DTSID="{67639F82-01F6-4936-AF68-4F68103D12CC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Sentiment"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{BF5031A3-5224-442E-B76D-6D064DE4ACA5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ABHI\ABHISERVER.europe]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{5D96E92C-EDAE-41AA-93D3-EA1B908CDF41}"
+      DTS:ObjectName="ABHI\ABHISERVER.europe">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ABHI\ABHISERVER;Initial Catalog=europe;Integrated Security=True;Application Name=SSIS-Sentiment-{5D96E92C-EDAE-41AA-93D3-EA1B908CDF41}ABHI\ABHISERVER.europe;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ABHI\ABHISERVER.europe 1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{7517AADE-B39A-402D-AA14-F5E46D7186E9}"
+      DTS:ObjectName="ABHI\ABHISERVER.europe 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ABHI\ABHISERVER;Initial Catalog=europe;Integrated Security=True;Application Name=SSIS-Sentiment-{7517AADE-B39A-402D-AA14-F5E46D7186E9}ABHI\ABHISERVER.europe 1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{6F0A55B8-A6D0-41A8-8A40-07CA2BE5DFAF}"
+      DTS:ObjectName="ABHI\ABHISERVER.europe_data1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ABHI\ABHISERVER;Initial Catalog=europe_data;Integrated Security=True;Application Name=SSIS-Sentiment-{6F0A55B8-A6D0-41A8-8A40-07CA2BE5DFAF}ABHI\ABHISERVER.europe_data1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\sentiment"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5218050A-8BD6-469E-880F-17759E96B91F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sentiment"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\sentiment\Sentiment_DIM"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Sentiment_DIM"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Sentiment_DIM"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\sentiment\Sentiment_DIM.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ABHI\ABHISERVER.europe 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ABHI\ABHISERVER.europe 1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].Columns[Country_Code]"
+                      cachedDataType="r8"
+                      cachedName="Country_Code"
+                      externalMetadataColumnId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[Country_Code]"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[Country_Code]" />
+                    <inputColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].Columns[sentiments]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="sentiments"
+                      externalMetadataColumnId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[sentiments]"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[sentiments]" />
+                    <inputColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].Columns[count]"
+                      cachedDataType="r8"
+                      cachedName="count"
+                      externalMetadataColumnId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[count]"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[count]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[Country_Code]"
+                      dataType="i4"
+                      name="Country_Code" />
+                    <externalMetadataColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[sentiments]"
+                      dataType="wstr"
+                      length="255"
+                      name="sentiments" />
+                    <externalMetadataColumn
+                      refId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input].ExternalColumns[count]"
+                      dataType="r8"
+                      name="count" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\sentiment\Sentiment_DIM.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\sentiment\Sentiment_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\sentiment\Sentiment_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\sentiment\Sentiment_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\sentiment\Sentiment_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\sentiment\sentiment_Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="sentiment_Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Sentiments"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\sentiment\sentiment_Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[Country_Code]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[Country_Code]"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[Country_Code]"
+                      name="Country_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[sentiments]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[sentiments]"
+                      length="255"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[sentiments]"
+                      name="sentiments"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[count]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[count]"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].Columns[count]"
+                      name="count"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[Country_Code]"
+                      dataType="r8"
+                      name="Country_Code" />
+                    <externalMetadataColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[sentiments]"
+                      dataType="wstr"
+                      length="255"
+                      name="sentiments" />
+                    <externalMetadataColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output].ExternalColumns[count]"
+                      dataType="r8"
+                      name="count" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[Country_Code]"
+                      dataType="r8"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[Country_Code]"
+                      name="Country_Code" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[sentiments]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[sentiments]"
+                      name="sentiments" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[count]"
+                      dataType="r8"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[count]"
+                      name="count" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\sentiment.Paths[ADO NET Source Output]"
+              endId="Package\sentiment\Sentiment_DIM.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\sentiment\sentiment_Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="125,42"
+          Id="Package\sentiment"
+          TopLeft="254,130" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\sentiment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\sentiment\sentiment_Source"
+          TopLeft="252.5,32.5" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\sentiment\Sentiment_DIM"
+          TopLeft="299,153" />
+        <EdgeLayout
+          Id="Package\sentiment.Paths[ADO NET Source Output]"
+          TopLeft="334,74.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="41,78.5"
+              Start="0,0"
+              End="41,71">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.25"
+                    Point2="0,39.25"
+                    Point3="4,39.25" />
+                  <mssgle:LineSegment
+                    End="37,39.25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="37,39.25"
+                    Point2="41,39.25"
+                    Point3="41,43.25" />
+                  <mssgle:LineSegment
+                    End="41,71" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\sentiment\sentiment_Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\sentiment\Sentiment_DIM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

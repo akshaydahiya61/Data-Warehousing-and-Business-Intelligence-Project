@@ -1,0 +1,378 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/19/2019 4:55:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ABHI"
+  DTS:CreatorName="ABHI\berad"
+  DTS:DTSID="{896B6D75-37EC-416B-A9B7-D13DD8E554C8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.0900.40"
+  DTS:LocaleID="16393"
+  DTS:ObjectName="Council"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{4B43FBA4-11F3-4CC0-95AE-6A7FE73314D7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ABHI\ABHISERVER.europe]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{41B12B1A-6372-41C3-9DF5-2E864DD85804}"
+      DTS:ObjectName="ABHI\ABHISERVER.europe">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ABHI\ABHISERVER;Initial Catalog=europe;Integrated Security=True;Application Name=SSIS-Council-{41B12B1A-6372-41C3-9DF5-2E864DD85804}ABHI\ABHISERVER.europe;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{51A366DB-D70A-4D04-BCE8-16A14A0680DD}"
+      DTS:ObjectName="ABHI\ABHISERVER.europe_data1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ABHI\ABHISERVER;Initial Catalog=europe_data;Integrated Security=True;Application Name=SSIS-Council-{51A366DB-D70A-4D04-BCE8-16A14A0680DD}ABHI\ABHISERVER.europe_data1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{E59FC7C1-E03A-4B3A-AED0-74B2DE6B76AF}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=H:\Europ_GDP\xls\Council of Ministers of europe.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Council"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{BE97A994-6119-4F3F-ADAD-EE49AF96EF7C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Council"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Council\Council_DIM"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Council_DIM"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Council_DIM"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Council\Council_DIM.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ABHI\ABHISERVER.europe]"
+                  connectionManagerRefId="Package.ConnectionManagers[ABHI\ABHISERVER.europe]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].Columns[Country_Code]"
+                      cachedDataType="r8"
+                      cachedName="Country_Code"
+                      externalMetadataColumnId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].ExternalColumns[Country_Code]"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[Country_Code]" />
+                    <inputColumn
+                      refId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].Columns[No_of_Ministers]"
+                      cachedDataType="r8"
+                      cachedName="No_of_Ministers"
+                      externalMetadataColumnId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].ExternalColumns[No_of_Ministers]"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[No_of_Ministers]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].ExternalColumns[Country_Code]"
+                      dataType="r8"
+                      name="Country_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input].ExternalColumns[No_of_Ministers]"
+                      dataType="r8"
+                      name="No_of_Ministers" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Council\Council_DIM.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Council\Council_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Council\Council_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Council\Council_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Council\Council_DIM.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Council\Council_Source"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="Council_Source"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."Council"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Council\Council_Source.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ABHI\ABHISERVER.europe_data1]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Council\Council_Source.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[Country_Code]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Council\Council_Source.Outputs[ADO NET Source Output].ExternalColumns[Country_Code]"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[Country_Code]"
+                      name="Country_Code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[No_of_Ministers]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Council\Council_Source.Outputs[ADO NET Source Output].ExternalColumns[No_of_Ministers]"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Output].Columns[No_of_Ministers]"
+                      name="No_of_Ministers"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Output].ExternalColumns[Country_Code]"
+                      dataType="r8"
+                      name="Country_Code" />
+                    <externalMetadataColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Output].ExternalColumns[No_of_Ministers]"
+                      dataType="r8"
+                      name="No_of_Ministers" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[Country_Code]"
+                      dataType="r8"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[Country_Code]"
+                      name="Country_Code" />
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[No_of_Ministers]"
+                      dataType="r8"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[No_of_Ministers]"
+                      name="No_of_Ministers" />
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Council\Council_Source.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Council.Paths[ADO NET Source Output]"
+              endId="Package\Council\Council_DIM.Inputs[ADO NET Destination Input]"
+              name="ADO NET Source Output"
+              startId="Package\Council\Council_Source.Outputs[ADO NET Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Council"
+          TopLeft="302,86" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Council">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="138,42"
+          Id="Package\Council\Council_DIM"
+          TopLeft="394,165" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Council\Council_Source"
+          TopLeft="367,65" />
+        <EdgeLayout
+          Id="Package\Council.Paths[ADO NET Source Output]"
+          TopLeft="442.5,107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="20.5,58"
+              Start="0,0"
+              End="20.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="4,29" />
+                  <mssgle:LineSegment
+                    End="16.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="16.5,29"
+                    Point2="20.5,29"
+                    Point3="20.5,33" />
+                  <mssgle:LineSegment
+                    End="20.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Council\Council_DIM">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Council\Council_Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

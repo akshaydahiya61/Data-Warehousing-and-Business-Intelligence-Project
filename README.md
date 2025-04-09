@@ -16,11 +16,11 @@ highest population but the low employee rate.
 
 Sources of data used in the project
 
-1st. Source Type Brief Summary
+1st. Source Type Brief Summary Data
 --Financial Times Unstructured This website has open source data of top 1000 emerging companies of EU. I scrapped the data using R
 
-2nd Data Sources Kaggle Structured 
+2nd. Data Sources Kaggle Structured Data
 --It contains population rate with the country code and economy rate of each country
 
-3rd Statista Structured 
+3rd. Statista Structured Data
 --Contains the data about the debt rate in relation to GDP of each country of EU.
